@@ -1,14 +1,16 @@
+import flask
 import flask_sqlalchemy
 import flask_migrate
+
 from .settings import app
 
-# Ключ под которым указывается ссылка на БД
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///app.db"
 
-data_base = flask_sqlalchemy.SQLAlchemy(app = app)
+DATABASE = flask_sqlalchemy.SQLAlchemy(app = app)
+
 
 migrate = flask_migrate.Migrate(
-    app = app, # Объект приложения
-    db = data_base, # Объект БД
-    directory = "app/migrations" # Папка с миграциями (путь к ней)
+    app = app,
+    db = DATABASE,
+    directory= "app/migrations"
 )
