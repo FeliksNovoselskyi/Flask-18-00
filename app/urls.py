@@ -6,6 +6,7 @@ from .settings import app
 home_app.add_url_rule(
     '/',
     view_func=render_home,
+    methods = ["GET", "POST"]
 )
 
 app.register_blueprint(home_app)
