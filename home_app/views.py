@@ -1,6 +1,5 @@
 import flask
-
-# Модуль для с хешированием
+import flask_login as flask_login
 import werkzeug.security as security
 
 from .models import User
@@ -31,13 +30,15 @@ def render_home():
 def render_auth():
     
     if flask.request.method == "POST":
-        email = flask.request.form.get("email")
-        password = flask.request.form.get("password")
+        email = flask.request.form.get('email')
+        password = flask.request.form.get('password')
         
-        if email and password:
+        if email and password :
+            user = User.query.filter_by(email = email).scalar()
             
-            user1 = User.query.filter_by(email = email).scalar()
-            print(user1)
+            password_correct = security.check_password_hash(pwhash = user.password, password = password)
             
-    
+            if password_correct:
+                flask_login.login_user(user)
+                
     return flask.render_template("auth.html")
