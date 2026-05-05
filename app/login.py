@@ -1,3 +1,4 @@
+
 """
 Модуль с настройками login_manager
 """
@@ -5,18 +6,15 @@
 import flask_login
 from home_app.models import User
 from .settings import app
+from config import SECRET_KEY
 
-app.secret_key = ""
+from flask_login import LoginManager
 
-manager = flask_login.LoginManager(
-    app
-)
 
-# Декоратор - это функция которая модифицирует другую функцию
-# Декораторы пишутся с @
+app.secret_key = SECRET_KEY
 
-@manager.user_loader
+login_manager = LoginManager(app)
+
+@login_manager.user_loader
 def get_user(user_id):
     return User.query.get(user_id)
-
-

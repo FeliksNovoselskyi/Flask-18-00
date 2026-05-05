@@ -9,4 +9,5 @@ class User(DATABASE.Model, flask_login.UserMixin):
     
     id = DATABASE.Column(DATABASE.Integer, primary_key=True)
     email = DATABASE.Column(DATABASE.String)
-    password = DATABASE.Column(DATABASE.String)
+    password_hash = DATABASE.Column(DATABASE.String)
+    

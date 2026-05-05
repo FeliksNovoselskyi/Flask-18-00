@@ -1,5 +1,5 @@
 import flask
-import flask_login as flask_login
+import flask_login
 import werkzeug.security as security
 
 from .models import User
@@ -7,7 +7,12 @@ from app.db import DATABASE
 
 
 def render_home():
-
+    
+    print(flask_login.current_user.is_authenticated)
+    
+    if flask_login.current_user.is_authenticated:
+        return flask.render_template("home.html", aboba123 = True)
+    
     if flask.request.method == "POST":
         email = flask.request.form.get("email")
         password = flask.request.form.get("password")
@@ -18,11 +23,12 @@ def render_home():
                 
                 hash_pasword = security.generate_password_hash(password= password)
                 
-                user = User (email = email, password = hash_pasword)
+                user = User (email = email, password_hash = hash_pasword)
 
                 DATABASE.session.add(user)
                 DATABASE.session.commit()
-                
+            
+            
     return flask.render_template("home.html")
 
 
@@ -36,9 +42,16 @@ def render_auth():
         if email and password :
             user = User.query.filter_by(email = email).scalar()
             
-            password_correct = security.check_password_hash(pwhash = user.password, password = password)
-            
-            if password_correct:
+            hashed_checked_password = security.check_password_hash(pwhash = user.password_hash, password = password)
+
+            if hashed_checked_password == True:
                 flask_login.login_user(user)
-                
+    
     return flask.render_template("auth.html")
+
+
+def render_logout():
+    
+    flask_login.logout_user()
+    
+    return flask.redirect("/auth")
