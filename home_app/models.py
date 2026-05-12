@@ -11,3 +11,11 @@ class User(DATABASE.Model, flask_login.UserMixin):
     email = DATABASE.Column(DATABASE.String)
     password_hash = DATABASE.Column(DATABASE.String)
     
+
+# 
+class Group():
+    pass
+
+# 
+class Message():
+    pass
