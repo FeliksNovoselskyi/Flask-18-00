@@ -2,16 +2,35 @@ import flask
 import flask_login
 import werkzeug.security as security
 
-from .models import User
+from .models import User, Group
 from app.db import DATABASE
 
 
 def render_home():
+    user = User.query.get(1)
+    
+    # laptop= Laptop(color="red", user_id=user.id)
+    # DATABASE.session.add(laptop)
+    # DATABASE.session.commit()
+    
+    # print(user.laptop)
+    
+    group1 = Group(group_name = "New group")
+    
+    DATABASE.session.add(group1)
+    DATABASE.session.commit()
+    
+    
+    
+    return flask.render_template("home.html")
+
+
+def render_reg():
     
     print(flask_login.current_user.is_authenticated)
     
     if flask_login.current_user.is_authenticated:
-        return flask.render_template("home.html", aboba123 = True)
+        return flask.render_template("reg.html", aboba123 = True)
     
     if flask.request.method == "POST":
         email = flask.request.form.get("email")
@@ -29,7 +48,7 @@ def render_home():
                 DATABASE.session.commit()
             
             
-    return flask.render_template("home.html")
+    return flask.render_template("reg.html")
 
 
 

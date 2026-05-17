@@ -1,4 +1,4 @@
-from home_app.views import render_home, render_auth, render_logout
+from home_app.views import render_reg, render_auth, render_logout, render_home
 from home_app.app import home_app
 
 from .settings import app
@@ -6,6 +6,12 @@ from .settings import app
 home_app.add_url_rule(
     '/',
     view_func=render_home,
+    methods = ['GET', 'POST']
+)
+
+home_app.add_url_rule(
+    '/reg',
+    view_func=render_reg,
     methods = ['GET', 'POST']
 )
 
