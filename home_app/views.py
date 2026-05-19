@@ -7,7 +7,7 @@ from app.db import DATABASE
 
 
 def render_home():
-    user = User.query.get(1)
+    user = User.query.get(2)
     
     # laptop= Laptop(color="red", user_id=user.id)
     # DATABASE.session.add(laptop)
@@ -15,12 +15,17 @@ def render_home():
     
     # print(user.laptop)
     
-    group1 = Group(group_name = "New group")
+    # group1 = Group(group_name = "New group")
     
-    DATABASE.session.add(group1)
-    DATABASE.session.commit()
+    # DATABASE.session.add(group1)
+    # DATABASE.session.commit()
     
+    # group1 = Group.query.get(1)
     
+    # group1.users.append(user)
+    # DATABASE.session.commit()
+    
+    print(user.groups)
     
     return flask.render_template("home.html")
 

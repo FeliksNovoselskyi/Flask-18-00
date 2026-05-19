@@ -10,6 +10,9 @@ class User(DATABASE.Model, flask_login.UserMixin):
     
     laptop = DATABASE.relationship("Laptop", back_populates="user", uselist = False)
     
+    # Many-to-Many 
+    groups = DATABASE.relationship("Group", secondary = "user_group", back_populates = "users")
+
 
 class Laptop(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key= True)
@@ -21,6 +24,7 @@ class Laptop(DATABASE.Model):
 
 
 class UserGroup(DATABASE.Model):
+    
     id = DATABASE.Column(DATABASE.Integer,primary_key = True )
     
     # Указываем поля в которых записаны ссылки на записи, которые связаны
@@ -28,14 +32,21 @@ class UserGroup(DATABASE.Model):
     group_id = DATABASE.Column(DATABASE.Integer, DATABASE.ForeignKey('group.id'))
     
 
+
 # 
 class Group(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True)
     group_name = DATABASE.Column(DATABASE.String)
     
+    # Параметр с названием таблицы со связями
+    secondary = "user_group"
+    
+    users = DATABASE.relationship("User", secondary = "user_group", back_populates = "groups")
     
 
 # 
 class Message():
     pass
+
+
 

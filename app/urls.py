@@ -3,6 +3,8 @@ from home_app.app import home_app
 
 from .settings import app
 
+# Flask-SocketIO - библиотека для работы с WebSocket во Flask
+
 home_app.add_url_rule(
     '/',
     view_func=render_home,

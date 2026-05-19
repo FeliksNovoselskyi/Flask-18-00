@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/c.css') }}">
 </head>
 <body>
     
-</body>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+    <script src="{{ url_for('home_app.static', filename='js/chat.js') }}"></script>
+    <!-- В src указывается путь к скрипту -->
+
+    <!-- Тег для подключения скрипта -->
+    <!-- <script> -->
+</body> 
 </html>

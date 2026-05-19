@@ -1,6 +1,13 @@
-from app.settings import app
+from app.settings import app, socket
+
 
 try:
-    app.run(debug = True, port = 8001)
+    # Запускаем сокет сервер
+    socket.run(
+        app=app, 
+        debug = True, 
+        port = 8001
+    )
+    
 except:
     print("Ошибка")
