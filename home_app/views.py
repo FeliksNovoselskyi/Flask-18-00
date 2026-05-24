@@ -2,30 +2,11 @@ import flask
 import flask_login
 import werkzeug.security as security
 
-from .models import User, Group
+from .models import User
 from app.db import DATABASE
 
 
 def render_home():
-    user = User.query.get(2)
-    
-    # laptop= Laptop(color="red", user_id=user.id)
-    # DATABASE.session.add(laptop)
-    # DATABASE.session.commit()
-    
-    # print(user.laptop)
-    
-    # group1 = Group(group_name = "New group")
-    
-    # DATABASE.session.add(group1)
-    # DATABASE.session.commit()
-    
-    # group1 = Group.query.get(1)
-    
-    # group1.users.append(user)
-    # DATABASE.session.commit()
-    
-    print(user.groups)
     
     return flask.render_template("home.html")
 
