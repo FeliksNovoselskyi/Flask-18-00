@@ -45,8 +45,10 @@ class Group(DATABASE.Model):
     
 
 # 
-class Message():
-    pass
+class Message(DATABASE.Model):
+    
+    id = DATABASE.Column(DATABASE.Integer, primary_key = True)
+    text = DATABASE.Column(DATABASE.String)
 
 
 
