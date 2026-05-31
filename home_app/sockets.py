@@ -3,19 +3,17 @@ from app.settings import socket
 from .models import Message
 from app.db import DATABASE as DB
 
+
 # Дописать обработку события connect
 
 @socket.on("connect")
 def func():
     print('Вы подключились')
     
-    message1 = Message.query.get(1)
-
     socket.emit(
         "message", 
         {
-            "from": "Feliks",
-            "message_text": message1.text
+            "message_text": "Soodsenie"
         }
     )
 
@@ -25,13 +23,27 @@ def func1():
 
 
 
-# @socket.on("message")
-# def func2(data):
+@socket.on("message")
+def func2(data):
     
-#     message = Message(
-#         text = data["messagetext"]
-#     )
+    print("\n", data, "\n")
     
-#     DB.session.add(message)
-#     DB.session.commit()
+    message = Message(
+        text = data["messagetext"]
+    )
+    
+    DB.session.add(message)
+    DB.session.commit()
 
+
+
+
+# @socket.on('join_room')
+# def function():
+    
+#     flask_socketio.join_room('room1')
+    
+#     socket.emit('join_room', {'room': 'room1'}, to = "room1")
+    
+#     # в to указываем клиента/комнату в которую отправить событие
+    

@@ -1,29 +1,5 @@
 
-// Арсений
-// Создать две переменные 
-// 1-ая - обычная переменная со строковым типом данных
-// 2-ая - константа, значение любое
-// let variable = "Hello, World!"
-// const PI = 3.14
 
-
-// Вова
-// Проверить совпадают ли эти две переменные (проверить по значению и по типу)
-// if (variable === PI){
-//     console.log('Yes')
-// } else {
-//     console.log("No")
-// }
-
-
-// Денис
-// Создать переменную счетчика, стартовое значение 0
-// let counter = 0
-
-// Создать цикл while с условием, при котором он работает пока counter меньше 100
-// while (counter < 100){
-//     console.log(counter);
-// }
 
 
 // Создать объект для работы с сокетами
@@ -40,9 +16,49 @@ socket.on("disconnect", () => {
     
 })
 
-socket.on("message", (data) => {
-    console.log(data.from, data.message_text)
-})
+
 // emit - излючить
-socket.emit("message", {messagetext: "Kirusha Malcev"})
+socket.emit(
+    "message", 
+    {
+        messagetext: "Kirusha Malcev",
+
+    }
+)
+
+
+
+
+
+// # - id
+// . - class
+
+
+// let join_button = document.getElementById("join_button")
+// let leave_button = document.querySelector("#leave_button")
+// let currentGroupParagraph = document.querySelector("p")
+
+
+
+
+// // Обрабатываем клик по кнопке join_button
+// join_button.addEventListener('click', () => {
+//     socket.emit('join_room')
+// })
+
+
+// leave_button.addEventListener('click', () => {
+//     socket.emit('leave_room')
+// })
+
+// // .addEventListener(событие, функция)
+
+// console.log(join_button, leave_button)
+
+
+// socket.on("join_room", (data) => {
+//     console.log(data.message)
+
+//     currentGroupParagraph.textContent = `Поточна група: ${data.group_title}`
+// })
 
