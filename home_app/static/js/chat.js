@@ -1,7 +1,3 @@
-
-
-
-
 // Создать объект для работы с сокетами
 const socket = io()
 
@@ -16,49 +12,92 @@ socket.on("disconnect", () => {
     
 })
 
-
-// emit - излючить
-socket.emit(
-    "message", 
-    {
-        messagetext: "Kirusha Malcev",
-
-    }
-)
-
-
-
-
-
-// # - id
-// . - class
-
-
 // let join_button = document.getElementById("join_button")
-// let leave_button = document.querySelector("#leave_button")
-// let currentGroupParagraph = document.querySelector("p")
+// let leave_button = document.getElementById("leave_button")
+// let paragraph = document.querySelector("p")
+
+// const linkGroupId = 1
+
+join_button.addEventListener("click", () => {
+    // Отправить событие join_room на сервер
+    socket.emit('join_room', {groupId: linkGroupId})
+})
 
 
+// Обработать по кнопке leave_button
+leave_button.addEventListener("click", () => {
+    // Отправить событие leave_room на сервер
+    socket.emit("leave_room", {"bebe": "lala"})
+})
 
 
-// // Обрабатываем клик по кнопке join_button
-// join_button.addEventListener('click', () => {
-//     socket.emit('join_room')
-// })
-
-
-// leave_button.addEventListener('click', () => {
-//     socket.emit('leave_room')
-// })
-
-// // .addEventListener(событие, функция)
-
-// console.log(join_button, leave_button)
-
-
+// // Обработать событие join_room, указать аргумент data
 // socket.on("join_room", (data) => {
 //     console.log(data.message)
-
-//     currentGroupParagraph.textContent = `Поточна група: ${data.group_title}`
 // })
+
+
+
+// // Обработать событие leave_room, указать аргумент data
+// socket.on("leave_room", (data) => {
+//     console.log(data)
+// })
+
+
+
+// Синтаксис создания JS-объекта
+const objectOne = {}
+
+
+let bear = {
+    legsCount: 3,
+    "marshall headphones": 2,
+    ears: 2,
+    flight() {
+        console.log("Поднимаемся в воздух");
+    }
+}
+
+// console.log(bear)
+
+// bear.flight()
+
+
+// Получение данных
+// console.log(bear["legsCount"])
+
+// Денис. Получить значение свойства ears из объект bear
+// Вывести значение в консоль
+// console.log(bear['ears'])
+// 1
+// объект.свойство
+
+// 2
+// объект["свойство"]
+
+
+// Запись данных
+
+
+bear["new"] = 2 
+
+bear.new2 = 10
+
+// объект.новое_свойство = значение
+// объект["новое_свойство"] = значение
+
+
+
+// Удаление
+
+delete bear.ears
+
+// delete объект.свойство
+
+// console.log(bear);
+
+
+
+console.log(typeof bear.new2)
+
 
