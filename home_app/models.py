@@ -38,9 +38,6 @@ class Group(DATABASE.Model):
     id = DATABASE.Column(DATABASE.Integer, primary_key = True)
     group_name = DATABASE.Column(DATABASE.String)
     
-    # Параметр с названием таблицы со связями
-    secondary = "user_group"
-    
     users = DATABASE.relationship("User", secondary = "user_group", back_populates = "groups")
     
 

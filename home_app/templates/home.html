@@ -7,9 +7,29 @@
     <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/c.css') }}">
 </head>
 <body>
-    <p>поточна группа:-</p>
-    <button id = "join_button">join</button>
-    <button id = "leave_button">leave</button>
+    <main>
+        <div id="chats-div">
+            <p>{{ title }}</p>
+        </div>
+
+        <div id="messages-div">
+
+        </div>
+
+        <div id="members-div">
+            {% for member in members %}
+            <div>
+                <p>
+                    {{ member.email }}
+                </p>
+                <p>
+                    Offline
+                    👩🏿‍🦯👩🏿‍🦽
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>

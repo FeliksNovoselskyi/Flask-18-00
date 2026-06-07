@@ -1,14 +1,27 @@
 import flask
 import flask_login
 import werkzeug.security as security
-
+from .models import Group
 from .models import User
 from app.db import DATABASE
 
 
 def render_home():
     
-    return flask.render_template("home.html")
+    group = Group.query.get(1)
+    slovar = {
+        "title" : group.group_name,
+        "members": []
+    }
+    
+    users = group.users
+    
+    for user in users:
+        slovar["members"].append({"email": user.email})
+    
+    # **dict - распаковывают
+    
+    return flask.render_template("home.html", **slovar)
 
 
 def render_reg():

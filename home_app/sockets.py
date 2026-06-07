@@ -1,8 +1,10 @@
 import flask
+import flask_login
 import flask_socketio
 from app.settings import socket
 from .models import Message, Group
 from app.db import DATABASE as DB
+from .app import online_users
 
 
 # Дописать обработку события connect
@@ -10,12 +12,20 @@ from app.db import DATABASE as DB
 def func():
     print('Вы подключились')
     
-    socket.emit(
-        "message", 
-        {
-            "message_text": "Soodsenie"
-        }
-    )
+    user_id = flask_login.current_user.id
+    
+    {
+        
+    }
+    
+    if user_id not in online_users.keys():
+        online_users[user_id] = set()
+    
+    online_users[user_id].add(flask.request.sid)
+    
+    
+    
+    print("\n", online_users, "\n")
 
 @socket.on("disconnect")
 def func1():
