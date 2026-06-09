@@ -2,7 +2,7 @@ import flask
 import flask_login
 import flask_socketio
 from app.settings import socket
-from .models import Message, Group
+from .models import Group
 from app.db import DATABASE as DB
 from .app import online_users
 
@@ -10,17 +10,9 @@ from .app import online_users
 # Дописать обработку события connect
 @socket.on("connect")
 def func():
-    
-    
     print('Вы подключились')
     
     user_id = flask_login.current_user.id
-    
-    """
-    {
-        1: {"wwwEfnRbBMZ5Q3frAAAB", "Vjz9aaijPFmrBbVEAAAB"}
-    }
-    """
     
     
     if user_id in online_users:
@@ -37,13 +29,6 @@ def func():
     }
     
     users = group.users
-    
-    
-    """
-    online_users = {
-        2: set()
-    }
-    """
     
     for user in users:
         
