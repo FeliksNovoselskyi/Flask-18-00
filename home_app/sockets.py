@@ -10,28 +10,111 @@ from .app import online_users
 # Дописать обработку события connect
 @socket.on("connect")
 def func():
+    
+    
     print('Вы подключились')
     
     user_id = flask_login.current_user.id
     
+    """
     {
-        
+        1: {"wwwEfnRbBMZ5Q3frAAAB", "Vjz9aaijPFmrBbVEAAAB"}
+    }
+    """
+    
+    
+    if user_id in online_users:
+        online_users[user_id].add(flask.request.sid)
+    else:
+        online_users[user_id] = set()
+        online_users[user_id].add(flask.request.sid)
+    
+    # Получаем данные пользователей
+    group = Group.query.get(1)
+    data = {
+        "title" : group.group_name,
+        "members": []
     }
     
-    if user_id not in online_users.keys():
-        online_users[user_id] = set()
-    
-    online_users[user_id].add(flask.request.sid)
+    users = group.users
     
     
+    """
+    online_users = {
+        2: set()
+    }
+    """
     
-    print("\n", online_users, "\n")
+    for user in users:
+        
+        if user.id in online_users.keys():
+            status = "✅ ON line 📗"
+        else:
+            status = "❌ OFF line 📕"
+
+        data['members'].append({
+            "status": status,
+            'email': user.email
+        })
+    
+    socket.emit("display_status", data)
+    
 
 @socket.on("disconnect")
 def func1():
+    
+    user_id = flask_login.current_user.id
+    
+    """
+    online_users = {
+        2: set()
+    }
+    """
+    
+    online_users[user_id].discard(flask.request.sid)
+    
+    # Проверить равен ли set объект пустому сету (set())
+    if online_users[user_id] == set():
+        del online_users[user_id]
+        # Удаляем set объект
+    
     print('Вы отключились')
+    
+    print("\n DISCONNECT:", online_users, "\n")
+    
+    # Получаем данные пользователей
+    group = Group.query.get(1)
+    data = {
+        "title" : group.group_name,
+        "members": []
+    }
+    
+    users = group.users
+    
+    
+    """
+    online_users = {
+        2: set()
+    }
+    """
+    
+    for user in users:
+        
+        if user.id in online_users.keys():
+            status = "✅ ON line 📗"
+        else:
+            status = "❌ OFF line 📕"
 
+        data['members'].append({
+            "status": status,
+            'email': user.email
+        })
+    
+    socket.emit("display_status", data)
 
+@socket.on("message")
+def func123():
+    print("СОБЫТИЕ")
 
 @socket.on('join_room')
 def function(data: dict):

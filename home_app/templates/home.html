@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/c.css') }}">
 </head>
 <body>
+    
     <main>
         <div id="chats-div">
             <p>{{ title }}</p>
@@ -17,17 +18,7 @@
         </div>
 
         <div id="members-div">
-            {% for member in members %}
-            <div>
-                <p>
-                    {{ member.email }}
-                </p>
-                <p>
-                    Offline
-                    👩🏿‍🦯👩🏿‍🦽
-                </p>
-            </div>
-            {% endfor %}
+
         </div>
     </main>
 
