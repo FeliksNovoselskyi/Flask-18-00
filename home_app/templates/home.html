@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/c.css') }}">
+    <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/mobile.css') }}">
 </head>
 <body>
     
     <main>
-        <div id="chats-div">
+        <div id="chats-div"  class="active">
+            <button id="chats-button">chat-button</button>
             <p>{{ title }}</p>
         </div>
 
         <div id="messages-div">
-
+        <button id="messages-button">messages-button</button>
         </div>
 
         <div id="members-div">
 
         </div>
     </main>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
     <script src="{{ url_for('home_app.static', filename='js/chat.js') }}"></script>

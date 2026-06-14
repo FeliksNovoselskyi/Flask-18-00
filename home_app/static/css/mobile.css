@@ -1,0 +1,29 @@
+
+@media (max-width: 480px){
+    div {
+        background-color: yellow;
+
+    }
+    #chats-div{
+        display: none;
+        background-color: red;
+
+    }
+    #messages-div{
+        display: none;
+
+    }
+    #members-div{
+        display: none;
+    }
+    #messages-div.active{
+        display: block;
+    }
+    #chats-div.active{
+        display: block;
+    }
+    #members-div.active{
+        display: block;
+    }
+}   
+

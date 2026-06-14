@@ -28,4 +28,34 @@ socket.on("display_status", (data) => {
     });
 })
 
+const chatsButton = document.getElementById("chats-button")
 
+chatsButton.addEventListener('click', () => {
+    console.log(123123123123)
+    const chatsDiv = document.getElementById('chats-div');
+    const messagesDiv = document.getElementById('messages-div');
+    
+    messagesDiv.classList.add('active');
+    chatsDiv.classList.remove('active');
+
+
+    // chatsDiv.classList - классы которые присвоены элементу
+});
+
+document.getElementById("messages-button").addEventListener('click', openMessages);
+
+// function openChat(event){
+//     console.log(123123123123)
+//     const chatsDiv = document.getElementById('chats-div');
+//     const messagesDiv = document.getElementById('messages-div');
+    
+//     messagesDiv.classList.add('active');
+//     chatsDiv.classList.remove('active');
+
+
+//     // chatsDiv.classList - классы которые присвоены элементу
+// }
+function openMessages(){
+    const messagesDiv = document.getElementById('messages-div');
+    
+}
