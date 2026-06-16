@@ -7,6 +7,8 @@ socket.on("connect", () => {
 
 })
 
+socket.emit("")
+
 socket.on("disconnect", () => {
     console.log("Ви ВІД'ЄДНАЛИСЯ")
     
@@ -28,34 +30,52 @@ socket.on("display_status", (data) => {
     });
 })
 
-const chatsButton = document.getElementById("chats-button")
+// Получить кнопку с id messages-tab
+const messagesTab = document.getElementById('messages-tab');
+// Получить кнопку с id chats-tab
 
-chatsButton.addEventListener('click', () => {
-    console.log(123123123123)
-    const chatsDiv = document.getElementById('chats-div');
-    const messagesDiv = document.getElementById('messages-div');
-    
+const membersTab = document.getElementById('members-tab');
+
+//divs
+const messagesDiv = document.getElementById('messages-div')
+const chatsDiv = document.getElementById('chats-div')
+const membersTabDiv = document.getElementById('members-tab-div')
+
+// Обработать событие клика по кнопке
+membersTab.addEventListener('click', () => {
+
+    console.log('chats-tab clicked!');
+    messagesDiv.classList.remove('active');
+    membersTabDiv.classList.add('active');
+
+})
+
+// Обработать событие клика по кнопке messagesTab
+
+messagesTab.addEventListener('click', () => {
+
+    console.log('messages-tab clicked!');
     messagesDiv.classList.add('active');
     chatsDiv.classList.remove('active');
+    membersTabDiv.classList.remove('active');
+
+})
 
 
-    // chatsDiv.classList - классы которые присвоены элементу
-});
-
-document.getElementById("messages-button").addEventListener('click', openMessages);
-
-// function openChat(event){
-//     console.log(123123123123)
-//     const chatsDiv = document.getElementById('chats-div');
-//     const messagesDiv = document.getElementById('messages-div');
-    
-//     messagesDiv.classList.add('active');
-//     chatsDiv.classList.remove('active');
+// Back buttons
+const backMessagesTab = document.getElementById('back-messages-tab')
+const backChatsTab = document.getElementById('back-chats-tab')
 
 
-//     // chatsDiv.classList - классы которые присвоены элементу
-// }
-function openMessages(){
-    const messagesDiv = document.getElementById('messages-div');
-    
-}
+
+// Обработать клик по кнопке backMessagesTab
+backMessagesTab.addEventListener("click", () => {
+    messagesDiv.classList.add('active');
+    membersTabDiv.classList.remove('active');
+})
+
+// Обработать клик по кнопке backChatsTab
+backChatsTab.addEventListener("click", () => {
+    messagesDiv.classList.remove('active');
+    chatsDiv.classList.add('active');
+})

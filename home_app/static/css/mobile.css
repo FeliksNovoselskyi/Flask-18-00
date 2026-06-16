@@ -1,29 +1,42 @@
 
-@media (max-width: 480px){
-    div {
-        background-color: yellow;
+
+
+/* Создать медиа-запрос на максимальную ширину экрана в 480px */
+@media (max-width: 480px) {
+    
+    html{
+        font-size: 16px;
+    }
+
+    #chats-div {
+        display: none;
+        width: 100%
+    }
+    #members-tab-div {
+        display: none;
+        width: 100%;
 
     }
-    #chats-div{
+    #messages-div {
         display: none;
-        background-color: red;
+        width: 100%
+    }
 
-    }
-    #messages-div{
-        display: none;
-
-    }
-    #members-div{
-        display: none;
-    }
-    #messages-div.active{
-        display: block;
-    }
+    
     #chats-div.active{
         display: block;
+        width: 100%;
     }
-    #members-div.active{
+
+    #messages-div.active{
         display: block;
+        width: 100%
     }
-}   
+    
+    #members-tab-div.active{
+        display: block;
+        width: 100%;
+        padding: 20px;
+    }
+}
 

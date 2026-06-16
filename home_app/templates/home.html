@@ -5,21 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/c.css') }}">
+    <!-- Саша. Подключить css/mobile.css -->
     <link rel="stylesheet" href="{{ url_for('home_app.static', filename='css/mobile.css') }}">
 </head>
 <body>
     
     <main>
-        <div id="chats-div"  class="active">
-            <button id="chats-button">chat-button</button>
+        <div id="chats-div">
+            <p>Сторінка чатів</p>
+            <!-- Создать кнопку с id messages-tab -->
+            <button id="messages-tab">messages-tab</button>
+            
             <p>{{ title }}</p>
         </div>
+        
 
         <div id="messages-div">
-        <button id="messages-button">messages-button</button>
+            <p>Сторінка повідомлень</p>
+            <!-- Создать кнопку с id chats-tab -->
+            <button id="members-tab">members-tab</button>
+            
+            <!-- Создать кнопку с back-tab  -->
+            <button id="back-chats-tab">back-tab</button>
         </div>
 
-        <div id="members-div">
+        <div id="members-tab-div" class="active">
+            <p>Сторінка учасників</p>
+            <!-- Создать кнопку с back-tab   -->
+            <button id="back-messages-tab">повернутись</button> 
+
+            <div id="members-div">
+
+            </div>
 
         </div>
     </main>

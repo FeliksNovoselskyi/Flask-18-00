@@ -50,12 +50,6 @@ def func1():
     
     user_id = flask_login.current_user.id
     
-    """
-    online_users = {
-        2: set()
-    }
-    """
-    
     online_users[user_id].discard(flask.request.sid)
     
     # Проверить равен ли set объект пустому сету (set())
@@ -78,8 +72,11 @@ def func1():
     
     
     """
-    online_users = {
-        2: set()
+    {
+        1: {
+            "123123",
+        },
+        2: {}
     }
     """
     
@@ -134,3 +131,8 @@ def handle_leave_room():
     flask_socketio.leave_room('room1')
 
     socket.emit('leave_room', {'room': 'room1'}, to = "room1")
+
+
+
+
+socket.emit("event2")
